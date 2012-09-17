@@ -54,6 +54,7 @@ class LocalTunnel::Tunnel
         end
       end
       puts "   Port #{port} is now publicly accessible from http://#{tunnel['host']} ..."
+      `open http://#{tunnel['host']}`
       begin
         sleep 1 while true
       rescue Interrupt
