@@ -1,0 +1,29 @@
+---
+name: jetty test
+description: ''
+keywords: ''
+type: Default
+documentation: ''
+images:
+- name: consol_jetty-6_latest
+  source: consol/jetty-6:latest
+  category: App
+  type: Default
+  ports:
+  - host_port: '8080'
+    container_port: '80'
+    proto: TCP
+  links:
+  - service: mongo
+    alias: mongo
+- name: mongo
+  source: mongo:latest
+  category: DB
+  type: Default
+- name: wizardapps_ngrok
+  source: wizardapps/ngrok:latest
+  category: Proxy
+  type: Default
+  links:
+  - service: consol_jetty-6_latest
+    alias: consol_jetty-6_latest
